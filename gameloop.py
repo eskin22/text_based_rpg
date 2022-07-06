@@ -1,27 +1,27 @@
-import player, enemies
+import player, enemies, game_methods, levels
 
 def main():
     running = True
     while running == True:
-        print("------------------------------------------------------------------")
+        global player1
+        player1 = player.Player("Player")
+        print("------------------------------------------------------------------\n------------------------------------------------------------------")
         menu = input("\n\nWelcome to the game. Would you like to play? (y/n)")
 
         if menu.lower() == "n":
             break
 
         elif menu.lower() == "y":
-            player_name = input("\nWelcome to the game. You're about to embark on an incredible adventure; but first things first: What is your name? \n")
-            print(f"\nHello {player_name}! The next question relates to your class. In this game there are a variety of classes that you can choose from.\nPlease select a class from the options below:")
-            menu = str(input("\n1. Warrior\n"))
-            if menu == "1":
-                player1 = player.Warrior(player_name)
-                print("\nYou selected the warrior class!")
-            menu = input("\nQuit? (y) \n")
-            if menu.lower() == "y":
-                print("\nGame Over. Goodbye! \n")
-                break
-            else:
-                "\nTry again\n"
+            playerName = input("\nWhat is your name? \n")
+            game_methods.classSelection(playerName)
+
 
         else:
             print("\nUh oh. You chose an invalid input. Please try again.\n")
+
+        menu = input("\nOkay, now we're going to go onto the adventure. Are you ready to embark? (y/n)")
+        if menu.lower() == "y":
+            levels.levelOne(player1)
+        else: 
+            print("Not going!")
+            break
