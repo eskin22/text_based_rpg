@@ -3,23 +3,21 @@ import player, enemies, game_methods, levels
 def main():
     running = True
     while running == True:
-        global player1
-        player1 = player.Player("Player")
+        print("\n------------------------------------------------------------------\n------------------------------------------------------------------")
+        print("                            GAME                                   ")
         print("------------------------------------------------------------------\n------------------------------------------------------------------")
-        menu = input("\n\nWelcome to the game. Would you like to play? (y/n)")
+        menu = input("\nWould you like to play? (y/n) \n")
 
         if menu.lower() == "n":
             break
-
         elif menu.lower() == "y":
-            playerName = input("\nWhat is your name? \n")
-            game_methods.classSelection(playerName)
-
-
+            print("\nWelcome! The following is a text-based RPG developed in Python. \nBefore you may embark on your quest, we must establish your character information.")
+            playerName = input("\nLet's start with the basics: What is your name? \n")
+            player1 = game_methods.classSelection(playerName)
         else:
-            print("\nUh oh. You chose an invalid input. Please try again.\n")
+            print("\nError: You chose an invalid input. Please try again. \n")
 
-        menu = input("\nOkay, now we're going to go onto the adventure. Are you ready to embark? (y/n)")
+        menu = input(f"\n{playerName}, you're about to embark on an adventure. Are you ready to begin? (y/n) \n")
         if menu.lower() == "y":
             levels.levelOne(player1)
         else: 
