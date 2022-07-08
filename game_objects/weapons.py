@@ -1,9 +1,8 @@
-class Weapon():
+import game_objects.objects
+
+class Weapon(game_objects.objects.Object):
     def __init__(self):
-        self.name = None
         self.damage = None
-        self.value = None
-        self.desc = None
 
 class WoodenSword(Weapon):
     def __init__(self):

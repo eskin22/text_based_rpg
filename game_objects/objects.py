@@ -17,6 +17,7 @@ class Object():
         self.name = None
         self.value = None
         self.desc = None
+        self.chestID = None
 
     
 class Dildo(Object):

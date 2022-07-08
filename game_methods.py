@@ -1,4 +1,4 @@
-import player, random
+import player, random, sys
 
 def classSelection(playerName):
     running = True
@@ -61,7 +61,11 @@ def battle(player, enemy):
                 player.attack(enemy)
             
         if enemy.hp <= 0:
-                break
+            enemy.isDead = True
+            break
+        
+        if player.hp <= 0:
+            sys.exit()
     
     
 def encounter(player, enemy):

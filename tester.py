@@ -12,14 +12,13 @@ dagger1 = game_objects.weapons.Dagger()
 sword1 = game_objects.weapons.Sword()
 dildo1 = game_objects.objects.Dildo()
 
-chest1 = game_objects.chests.Chest("Chest")
-chest1.addItems(sword1)
-chest1.open()
-chest1.removeItems(sword1)
-chest1.open()
+# chest1 = game_objects.chests.Chest("Chest")
+# chest1.addItems(sword1, dagger1, woodenSword1)
+# chest1.open(player1)
 
-# levels.levelOne(player1)
+#levels.levelOne(player1)
 
-
+chest2 = game_objects.chests.Chest("Captain's Chest")
+chest2.open(player1)
 
 

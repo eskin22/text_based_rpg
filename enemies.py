@@ -8,6 +8,7 @@ class Enemy():
         self.attackPower = None
         self.speed = None
         self.item = None
+        self.isDead = False
 
     def attack(self, player):
         player.hp -= self.attackPower
@@ -16,8 +17,12 @@ class Enemy():
         print(f"{self.name} attacks {player.name} and does {self.attackPower} damage! You have {player.hp} health remaining.")
         if player.hp <= 0:
             print("\n------------------------------------------------------------------")
-            print("                      You have been slain!")
+            print("                    You have been slain!")
             print("------------------------------------------------------------------")
+
+            print("\n------------------------------------------------------------------\n------------------------------------------------------------------")
+            print("                         GAME OVER!                                   ")
+            print("------------------------------------------------------------------\n------------------------------------------------------------------")
 
     def drop(self, player, introString):
         menu = input(f"\n{introString}\nWould you like to add the {self.item.name} to your inventory? (y/n)\n").lower()
@@ -31,7 +36,7 @@ class Enemy():
                 elif menu == "n":
                     pass
         elif menu == "n":
-            print(f"\nThe {self.item.name} not added. You continue on. \n")
+            print(f"\nThe {self.item.name} was not added. You continue on. \n")
 
 class Wolf(Enemy):
     def __init__(self, name):

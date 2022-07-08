@@ -24,19 +24,20 @@ class Player():
             print(f"                   The {enemy.name} has been slain!")
             print("------------------------------------------------------------------")
 
-    def takeItems(self, chest, *items):
-        for item in items:
+    def addCoin(self, coins):
+        self.coin.addCoin(coins)
+
+    def takeItems(self, inv, *args):
+        for item in args:
             self.inventory.append(item)
-            chest.removeItems(item)
+            inv.removeItems(item)
             print(f"\n{item.name} added to inventory. \n")
         
-
     def equipWeapon(self, weapon):
         self.weapon = weapon
         self.attackPower = ((1+(self.strength/100))*weapon.damage)
         print(f"\n{weapon.name} equipped successfully. ")
         
-
     def getPlayer(self):
         return self
     
@@ -84,7 +85,7 @@ class Tester(Player):
         self.className = "Tester"
         super().__init__(name)
         self.name = name
-        self.hp = 100
+        self.hp = 10
         self.magicAffinity = 50
         self.strength = 50
         self.speed = 50
