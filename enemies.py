@@ -63,6 +63,14 @@ class Ogre(Enemy):
         self.attackPower = 20
         self.speed = 25
 
+class Alien(Enemy):
+    def __init__(self, name):
+        super().__init__(name)
+        self.name = name 
+        self.hp = 150
+        self.attackPower = 25
+        self.speed = 30
+
     
 
 

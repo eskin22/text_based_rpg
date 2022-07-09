@@ -15,13 +15,13 @@ def levelOne(player):
         chest1 = chests.LevelOneChest()
 
         #search bush (coins)
-        menu = input("\nYou wake up in a forest and see a bush. Would you like to search it? (y/n) \n").lower()
-        if menu == "y":
+        menuMain = input("\nYou wake up in a forest and see a bush. Would you like to search it? (y/n) \n").lower()
+        if menuMain == "y":
             player.addCoin(10)
             print(f"\nYou search the bush and notice something shining. You found 30 gold coins! (Coins: {player.coin.getValue()}) \n")
 
         #decide not to search bush (no coins)
-        elif menu == "n":
+        elif menuMain == "n":
             print("\nYou decide not to search the bush and continue moving forward. \n")
 
         #wolf attack  
@@ -31,14 +31,14 @@ def levelOne(player):
 
         #stop at crossroads, choose path
         while player.hp > 0:
-            menu = input("\nWhich direction would you like to travel?\n1. East (River) \n2. West (Civilization) \n3. North (Cave) \n4. South (Deeper Into Woods) \n")
+            menu0 = input("\nWhich direction would you like to travel?\n1. East (River) \n2. West (Civilization) \n3. North (Cave) \n4. South (Deeper Into Woods) \n")
             
             #east (river, sunken ship)
-            if menu == "1": 
+            if menu0 == "1": 
 
                 #crab attack (get crab sword)
-                menu = input("\nYou emerge from the brush and discover a beach adjacent to a wide rover flowing south. \nYou notice a wrecked ship lying along the shoreline, would you like to search it? (y/n) \n").lower()
-                if menu == "y":
+                menu1 = input("\nYou emerge from the brush and discover a beach adjacent to a wide rover flowing south. \nYou notice a wrecked ship lying along the shoreline, would you like to search it? (y/n) \n").lower()
+                if menu1 == "y":
                     if giantcrab1.isDead == True:
                         pass
                     else:
@@ -47,23 +47,31 @@ def levelOne(player):
                         giantcrab1.drop(player, "You fashion the Crabosaur's large claw into a makeshift sword that you can use to defend yourself.")
 
                     #go to sunken ship
-                    chest1.intro()
-                    if menu == "y":
+                    menu2 = chest1.intro()
+                    if menu2 == "y":
                         chest1.open(player)
                         print("\nAfter searching the chest in the wreckage, you retread back the way you came into the woods.")
-                    elif menu == "n":
+                    elif menu2 == "n":
                         print("\nYou chose not to open the chest and make your way back to the woods. \n")
-                elif menu == "n":
+                    # else:
+                    #     print("\nError: Invalid input. Please try again. \n")
+                elif menu1 == "n":
                     print("\nYou return to the woods. \n")
 
+                # else:
+                #     print("\nError: Invalid input. Please try again. \n")
+
             #west (civilization)
-            if menu == "2": 
+            if menu0 == "2": 
                 pass
             
             #north (cave)
-            if menu == "3": 
+            if menu0 == "3": 
                 pass
             
             #south (deeper into the woods)
-            if menu == "4":
+            if menu0 == "4":
                 pass
+
+            # else:
+            #     print("\nError: Invalid input. Please try again. \n")

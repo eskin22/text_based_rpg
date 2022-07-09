@@ -20,6 +20,8 @@ def classSelection(playerName):
             break
         elif menu == "$info 3":
             classInfo(player.Mage("Info"))
+        else:
+            print("\nError: Invalid input. Please try again. \n")
     return player1
 
 def classInfo(player):
@@ -73,13 +75,15 @@ def encounter(player, enemy):
     print(f"                            {enemy.name.upper()}            HP: {enemy.hp}       DMG: {enemy.attackPower}                          ")
     print("------------------------------------------------------------------")
 
-    menu = input(f"\nWhat would you like to do? ($attack/$flee) \n").lower()
-    if menu == "$attack":
+    menuAttack = input(f"\nWhat would you like to do? ($attack/$flee) \n").lower()
+    if menuAttack == "$attack":
         battle(player, enemy)
-    elif menu == "$flee":
+    elif menuAttack == "$flee":
         randNum = random.randint(0,9)
         if (randNum <= 7):
             print("\nYou escaped safely. \n")
         elif (randNum > 7):
             print(f"\nYou try to escape, but the {enemy.name} has cornered you! \n")
             battle(player, enemy)
+    # else:
+    #     print("\nError: Invalid input. Please try again. \n")

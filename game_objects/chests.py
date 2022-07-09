@@ -44,22 +44,22 @@ class Chest():
                         spacingString3 += " "
 
                     if isinstance(item, game_objects.weapons.Weapon):
-                        print(f"{count}. {item.name}{spacingString2}{item.value}{spacingString2}{item.damage}")
+                        print(f"{count}. {item.name}{spacingString2}{item.value}{spacingString3}{item.damage}")
                     else:
-                        print(f"{count}. {item.name}{spacingString3}{item.value}")
+                        print(f"{count}. {item.name}{spacingString2}{item.value}")
             except:
                 print()
             print("------------------------------------------------------------------")
             print("                            BACK ($back)                                   ")
             print("------------------------------------------------------------------")
 
-            menu = input("\n            TIP: Use command $take to take items \n")
-            if menu == "$back":
+            menuChest = input("\n            TIP: Use command $take to take items \n")
+            if menuChest == "$back":
                 running = False
-            elif menu.startswith("$take"):
-                menu = int(menu[6:])
+            elif menuChest.startswith("$take"):
+                menuChest = int(menuChest[6:])
                 for item in self.inventory:
-                    if item.chestID == menu:
+                    if item.chestID == menuChest:
                         player.takeItems(self, item)
 
 

@@ -8,7 +8,7 @@ class Player():
         self.strength = None
         self.speed = None
         self.coin = objects.Coinpurse(250)
-        #self.attackPower = ((1+(self.strength/100))*5)
+        self.attackPower = None
         self.weapon = None
         self.inventory = []
 
@@ -85,7 +85,7 @@ class Tester(Player):
         self.className = "Tester"
         super().__init__(name)
         self.name = name
-        self.hp = 10
+        self.hp = 1000
         self.magicAffinity = 50
         self.strength = 50
         self.speed = 50
