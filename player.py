@@ -11,6 +11,7 @@ class Player():
         self.attackPower = None
         self.weapon = None
         self.inventory = []
+        self.location = None
 
         print(f"\nYou selected the {self.className} class!")
 
@@ -37,6 +38,9 @@ class Player():
         self.weapon = weapon
         self.attackPower = ((1+(self.strength/100))*weapon.damage)
         print(f"\n{weapon.name} equipped successfully. ")
+
+    def move(self, list1num, list2num):
+        self.location
         
     def getPlayer(self):
         return self
