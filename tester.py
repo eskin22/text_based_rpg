@@ -1,4 +1,4 @@
-import player, enemies, game_methods, levels, game_objects.weapons, game_objects.chests, game_objects.objects, rooms.levelOneRooms
+import player, enemies, game_methods, levels, game_objects.weapons, game_objects.chests, game_objects.objects, rooms
 
 player1 = player.Tester("Blake")
 #player2 = player.Tester("Caileigh")
@@ -16,19 +16,19 @@ dildo1 = game_objects.objects.Dildo()
 # chest1.addItems(sword1, dagger1, woodenSword1)
 # chest1.open(player1)
 
-# square1 = rooms.levelOneRooms.Square()
-# square2 = rooms.levelOneRooms.Square()
-# square3 = rooms.levelOneRooms.Square()
-# square4 = rooms.levelOneRooms.Square()
-# square5 = rooms.levelOneRooms.Square()
-# square6 = rooms.levelOneRooms.Square()
-# square7 = rooms.levelOneRooms.Square()
-# square8 = rooms.levelOneRooms.Square()
-# square9 = rooms.levelOneRooms.Square()
-# list = [square1, square2, square3]
+testRoom = rooms.TestRoom()
 
-alien1 = enemies.Alien("Alien")
-game_methods.encounter(player1, alien1)
+player1.location = testRoom
 
+player1.location.getLocation()
+player1.moveUp()
+player1.location.getLocation()
+player1.moveForward()
+player1.location.getLocation()
+player1.moveDown()
+player1.location.getLocation()
+player1.moveBackward()
+player1.location.getLocation()
+player1.getLocation()
 
 

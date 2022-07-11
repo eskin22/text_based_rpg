@@ -1,4 +1,4 @@
-import game_objects.objects as objects, game_objects.weapons as weapons
+import game_objects.objects as objects, game_objects.weapons as weapons, rooms
 
 class Player():
     def __init__(self, name):
@@ -39,8 +39,20 @@ class Player():
         self.attackPower = ((1+(self.strength/100))*weapon.damage)
         print(f"\n{weapon.name} equipped successfully. ")
 
-    def move(self, list1num, list2num):
-        self.location
+    def moveUp(self):
+        self.location.moveUp()
+
+    def moveDown(self):
+        self.location.moveDown()
+
+    def moveForward(self):
+        self.location.moveForward()
+
+    def moveBackward(self):
+        self.location.moveBackward()
+
+    def getLocation(self):
+        self.location.getLocation()
         
     def getPlayer(self):
         return self
@@ -95,6 +107,8 @@ class Tester(Player):
         self.speed = 50
         self.coin = objects.Coinpurse(500)
         self.attackPower = ((1+(self.strength/100))*5)
+        self.weapon = None
+        self.inventory = []
 
         
         
