@@ -1,5 +1,4 @@
-import game_objects.weapons
-
+import game_objects.weapons as weapons
 
 class Enemy():
     def __init__(self, name):
@@ -29,7 +28,7 @@ class Enemy():
         if menu == "y":
             player.inventory.append(self.item)
             print(f"\n{self.item.name} added to inventory. \n")
-            if (isinstance(self.item, game_objects.weapons.Weapon)):
+            if (isinstance(self.item, weapons.Weapon)):
                 menu = input("Would you like to equip it now? (y/n)\n").lower()
                 if menu == "y":
                     player.equipWeapon(self.item)
@@ -37,39 +36,6 @@ class Enemy():
                     pass
         elif menu == "n":
             print(f"\nThe {self.item.name} was not added. You continue on. \n")
-
-class Wolf(Enemy):
-    def __init__(self, name):
-        super().__init__(name)
-        self.name = name
-        self.hp = 20
-        self.attackPower = 5
-        self.speed = 60
-
-class GiantCrab(Enemy):
-    def __init__(self, name):
-        super().__init__(name)
-        self.name = name 
-        self.hp = 60
-        self.attackPower = 9
-        self.speed = 35
-        self.item = game_objects.weapons.CrabSword()
-
-class Ogre(Enemy):
-    def __init__(self, name):
-        super().__init__(name)
-        self.name = name
-        self.hp = 200
-        self.attackPower = 20
-        self.speed = 25
-
-class Alien(Enemy):
-    def __init__(self, name):
-        super().__init__(name)
-        self.name = name 
-        self.hp = 150
-        self.attackPower = 25
-        self.speed = 30
 
     
 

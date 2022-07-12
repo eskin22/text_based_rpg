@@ -1,4 +1,4 @@
-import game_objects.objects as objects, game_objects.weapons as weapons, rooms
+import game_objects.bank, game_objects.weapons, game_objects.chests, inventory, room
 
 class Player():
     def __init__(self, name):
@@ -7,10 +7,10 @@ class Player():
         self.magicAffinity = None
         self.strength = None
         self.speed = None
-        self.coin = objects.Coinpurse(250)
+        self.bank = game_objects.bank.Bank(250)
         self.attackPower = None
         self.weapon = None
-        self.inventory = []
+        self.inventory = inventory.Inventory()
         self.location = None
 
         print(f"\nYou selected the {self.className} class!")
@@ -25,12 +25,24 @@ class Player():
             print(f"                   The {enemy.name} has been slain!")
             print("------------------------------------------------------------------")
 
-    def addCoin(self, coins):
-        self.coin.addCoin(coins)
+    def addCoins(self, coins):
+        self.bank.addCoins(coins)
+    
+    def removeCoins(self, value):
+        self.bank.removeCoins(value)
+
+    def getBankValue(self):
+        return self.bank.value
+
+    def showBankValue(self):
+        self.bank.showValue()
+
+    def displayInventory(self):
+        self.inventory.viewInventory()
 
     def takeItems(self, inv, *args):
-        for item in args:
-            self.inventory.append(item)
+        for item in [*args]:
+            self.inventory.addItems(item)
             inv.removeItems(item)
             print(f"\n{item.name} added to inventory. \n")
         
@@ -53,62 +65,30 @@ class Player():
 
     def getLocation(self):
         self.location.getLocation()
+
+    def showLocation(self):
+        self.location.showLocation()
+
+    def setLocation(self, row, square):
+        self.location.setLocation(row, square)
+
+    def inspect(self):
+        self.location.getSquareInfo()
+
+    def interact(self):
+        object = self.location.getSquareChest()
+
+        if isinstance(object, game_objects.chests.Chest):
+            object.open(self)
+        elif isinstance(object, game_objects.weapons.Weapon):
+            pass
+        elif isinstance(object, game_objects.objects.Object):
+            pass
+
         
     def getPlayer(self):
         return self
-    
-    def interact(self, object):
-        pass
 
-class Warrior(Player):
-    def __init__(self, name):
-        self.className = "Warrior"
-        super().__init__(name)
-        self.name = name
-        self.hp = 120
-        self.magicAffinity = 30
-        self.strength = 50
-        self.speed = 55
-        self.coin = objects.Coinpurse(250)
-        self.attackPower = ((1+(self.strength/100))*5)
-
-class Merchant(Player):
-    def __init__(self, name):
-        self.className = "Merchant"
-        super().__init__(name)
-        self.name = name
-        self.hp = 110
-        self.magicAffinity = 30
-        self.strength = 40
-        self.speed = 60
-        self.coin = objects.Coinpurse(500)
-        self.attackPower = ((1+(self.strength/100))*5)
-
-class Mage(Player):
-    def __init__(self, name):
-        self.className = "Mage"
-        super().__init__(name)
-        self.name = name
-        self.hp = 100
-        self.magicAffinity = 70
-        self.strength = 30
-        self.speed = 45
-        self.coin = objects.Coinpurse(350)
-        self.attackPower = ((1+(self.strength/100))*5)
-
-class Tester(Player):
-    def __init__(self, name):
-        self.className = "Tester"
-        super().__init__(name)
-        self.name = name
-        self.hp = 1000
-        self.magicAffinity = 50
-        self.strength = 50
-        self.speed = 50
-        self.coin = objects.Coinpurse(500)
-        self.attackPower = ((1+(self.strength/100))*5)
-        self.weapon = None
-        self.inventory = []
 
         
         

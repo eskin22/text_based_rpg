@@ -1,6 +1,6 @@
-import player, enemies, game_methods, random, game_objects.key_items, game_objects.chests as chests, game_objects.weapons as weapons
+import player, enemy, game_methods, random, game_objects.key_items as key_items, game_objects.objects as objects, game_objects.chests as chests, game_objects.weapons as weapons
 
-def levelOne(player): 
+def play(player): 
     while player.hp > 0:
 
         print("------------------------------------------------------------------")
@@ -8,17 +8,18 @@ def levelOne(player):
         print("------------------------------------------------------------------")
 
         #intantiate enemies
-        wolf1 = enemies.Wolf("Wolf")
-        giantcrab1 = enemies.GiantCrab("Crabosaur")
+        wolf1 = enemy.Wolf("Wolf")
+        giantcrab1 = enemy.GiantCrab("Crabosaur")
 
         #instantiate chest
-        chest1 = chests.LevelOneChest()
+        chest1 = chests.CaptainChest()
 
         #search bush (coins)
         menuMain = input("\nYou wake up in a forest and see a bush. Would you like to search it? (y/n) \n").lower()
         if menuMain == "y":
-            player.addCoin(10)
-            print(f"\nYou search the bush and notice something shining. You found 30 gold coins! (Coins: {player.coin.getValue()}) \n")
+            coins = objects.Coins(30)
+            player.addCoins(coins)
+            print(f"\nYou search the bush and notice something shining. You found 30 gold coins! (Coins: {player.showBankValue()}) \n")
 
         #decide not to search bush (no coins)
         elif menuMain == "n":

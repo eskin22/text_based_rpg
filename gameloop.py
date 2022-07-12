@@ -1,4 +1,4 @@
-import player, enemies, game_methods, levels
+import player, enemy, game_methods, levels
 
 def main():
     running = True

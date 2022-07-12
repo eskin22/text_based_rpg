@@ -1,4 +1,5 @@
 import player, random, sys
+import player_classes.warriorClass, player_classes.merchantClass, player_classes.mageClass, player_classes.testerClass
 
 def classSelection(playerName):
     running = True
@@ -6,20 +7,20 @@ def classSelection(playerName):
         print(f"\nHello {playerName}! The next question relates to your class. \nYour class affects your character stats and the playstyle you adopt throughout your adventure.\nPlease select a class from the options below. TIP: You can get more info on a class by typing the $info command preceding your selection.")
         menu = str(input("\n1. Warrior \n2. Merchant \n3. Mage \n"))
         if menu == "1":
-            player1 = player.Warrior(playerName)
+            player1 = player_classes.warriorClass.Warrior(playerName)
             break
         elif menu == "$info 1":
-            classInfo(player.Warrior("Info"))    
+            classInfo(player_classes.warriorClass.Warrior("Info"))    
         elif menu == "2":
-            player1 = player.Merchant(playerName)
+            player1 = player_classes.merchantClass.Merchant(playerName)
             break
         elif menu == "$info 2":
-            classInfo(player.Merchant("Info"))
+            classInfo(player_classes.merchantClass.Merchant("Info"))
         elif menu == "3":
-            player1 = player.Mage(playerName)
+            player1 = player_classes.mageClass.Mage(playerName)
             break
         elif menu == "$info 3":
-            classInfo(player.Mage("Info"))
+            classInfo(player_classes.mageClass.Mage("Info"))
         else:
             print("\nError: Invalid input. Please try again. \n")
     return player1

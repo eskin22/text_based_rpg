@@ -1,34 +1,27 @@
-import player, enemies, game_methods, levels, game_objects.weapons, game_objects.chests, game_objects.objects, rooms
+import os
+from game_objects.objects import MiscItem
+import player, game_methods
+import player_classes.testerClass
+import levels.levelOne, rooms.levelOneRooms, rooms.testerRoom
+import game_objects.weapons as weapons, game_objects.food as food, game_objects.key_items as key_items, game_objects.misc_items as misc_items, game_objects.chests as chests
+import enemies.enemyWolf, enemies.enemyOgre
+import inventory
 
-player1 = player.Tester("Blake")
-#player2 = player.Tester("Caileigh")
+player1 = player_classes.testerClass.Tester("Blake")
 
-wolf1 = enemies.Wolf("Wolf")
 
-ogre1 = enemies.Ogre("Ogre")
+chest1 = chests.CaptainChest()
 
-woodenSword1 = game_objects.weapons.WoodenSword()
-dagger1 = game_objects.weapons.Dagger()
-sword1 = game_objects.weapons.Sword()
-dildo1 = game_objects.objects.Dildo()
+player1.inventory.addItems(weapons.Dagger(), weapons.Greatsword(), food.Cake(), key_items.GlowingAmber(), misc_items.ChildsToy(), misc_items.RuinedArtwork(), misc_items.Torch(), weapons.Mace(), food.CheeseWedge())
 
-# chest1 = game_objects.chests.Chest("Chest")
-# chest1.addItems(sword1, dagger1, woodenSword1)
-# chest1.open(player1)
+print(chest1.inventory)
+player1.takeItems(chest1, weapons.Dagger())
 
-testRoom = rooms.TestRoom()
+# inventory1.addItems(weapons.Dagger())
+# inventory1.addItems(food.Cake())
+# inventory1.addItems(key_items.GlowingAmber())
 
-player1.location = testRoom
+# print(inventory1.foodsList)
 
-player1.location.getLocation()
-player1.moveUp()
-player1.location.getLocation()
-player1.moveForward()
-player1.location.getLocation()
-player1.moveDown()
-player1.location.getLocation()
-player1.moveBackward()
-player1.location.getLocation()
-player1.getLocation()
 
 

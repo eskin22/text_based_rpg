@@ -1,10 +1,6 @@
-import game_objects.objects
+import game_objects.objects as objects
 
-class Weapon(game_objects.objects.Object):
-    def __init__(self):
-        self.damage = None
-
-class WoodenSword(Weapon):
+class WoodenSword(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Wooden Sword"
@@ -12,7 +8,7 @@ class WoodenSword(Weapon):
         self.value = 3
         self.desc = "A small wooden sword"
 
-class Dagger(Weapon):
+class Dagger(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Dagger"
@@ -20,7 +16,7 @@ class Dagger(Weapon):
         self.value = 5
         self.desc = "A small iron dagger"
 
-class Sword(Weapon):
+class Sword(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Sword"
@@ -28,7 +24,7 @@ class Sword(Weapon):
         self.value = 12
         self.desc = "A steel sword"
 
-class Mace(Weapon):
+class Mace(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Mace"
@@ -36,7 +32,7 @@ class Mace(Weapon):
         self.value = 15
         self.desc = "A steel mace"
 
-class Greatsword(Weapon):
+class Greatsword(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Greatsword"
@@ -44,7 +40,7 @@ class Greatsword(Weapon):
         self.value = 20
         self.desc = "A mighty steel greatsword"
 
-class CrabSword(Weapon):
+class CrabSword(objects.Weapon):
     def __init__(self):
         super().__init__()
         self.name = "Crab Sword"
