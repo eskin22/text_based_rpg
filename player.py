@@ -1,3 +1,4 @@
+from parso import ParserSyntaxError
 import game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
 
 class Player():
@@ -67,6 +68,11 @@ class Player():
         else:
             print("ERROR: Invalid input. Please try again.")
 
+    def findObject(self, object):
+        menuFindObject = input(f"You found a {object.name}! Would you like to add it to your inventory? (y/n)").lower()
+        pass
+    
+
         
     def equipWeapon(self, weapon):
         self.weapon = weapon
@@ -105,7 +111,7 @@ class Player():
         elif isinstance(object, objects.Weapon):
             self.findWeapon(object)
         elif isinstance(object, objects.KeyItem):
-            pass
+            self.
    
     def getPlayer(self):
         return self
