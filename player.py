@@ -53,8 +53,20 @@ class Player():
             self.equipWeapon(weapon)
         elif menuFindWeapon == "n":
             self.inventory.addItems(weapon)
+            print(f"The {weapon.name} was added to your inventory.")
         else:
             print("ERROR: Invalid input. Please try again.")
+
+    def findChest(self, chest):
+        menuFindChest = input(f"You found a chest! Would you like to open it? (y/n)").lower()
+        
+        if menuFindChest == "y":
+            chest.open(self)
+        elif menuFindChest == "n":
+            print("You chose not search the chest. ")
+        else:
+            print("ERROR: Invalid input. Please try again.")
+
         
     def equipWeapon(self, weapon):
         self.weapon = weapon
@@ -89,7 +101,7 @@ class Player():
         object = self.location.getSquareObject()
 
         if isinstance(object, chest.Chest):
-            object.open(self)
+            self.findChest(object)
         elif isinstance(object, objects.Weapon):
             self.findWeapon(object)
         elif isinstance(object, objects.KeyItem):
