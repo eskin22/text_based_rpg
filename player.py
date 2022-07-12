@@ -1,4 +1,4 @@
-import game_objects.bank, game_objects.weapons, game_objects.chests, inventory, room
+import game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
 
 class Player():
     def __init__(self, name):
@@ -7,7 +7,7 @@ class Player():
         self.magicAffinity = None
         self.strength = None
         self.speed = None
-        self.bank = game_objects.bank.Bank(250)
+        self.bank = bank.Bank(250)
         self.attackPower = None
         self.weapon = None
         self.inventory = inventory.Inventory()
@@ -21,9 +21,9 @@ class Player():
             enemy.hp = 0
         print(f"{self.name} attacks {enemy.name} and does {self.attackPower} damage! {enemy.name} has {enemy.hp} HP remaining.")
         if enemy.hp <= 0:
-            print("\n------------------------------------------------------------------")
-            print(f"                   The {enemy.name} has been slain!")
-            print("------------------------------------------------------------------")
+            print("\n------------------------------------------------------------------------------------------")
+            print("{:^90}".format("The " + enemy.name + " has been slain!"))
+            print("------------------------------------------------------------------------------------------")
 
     def addCoins(self, coins):
         self.bank.addCoins(coins)
@@ -34,7 +34,7 @@ class Player():
     def getBankValue(self):
         return self.bank.value
 
-    def showBankValue(self):
+    def displayBankValue(self):
         self.bank.showValue()
 
     def displayInventory(self):
@@ -44,7 +44,17 @@ class Player():
         for item in [*args]:
             self.inventory.addItems(item)
             inv.removeItems(item)
-            print(f"\n{item.name} added to inventory. \n")
+            print(f"\n{item.name} added to inventory. ")
+
+    def findWeapon(self, weapon):
+        menuFindWeapon = input(f"You found a {weapon.name}! Would you like to equip it now? (y/n)").lower()
+        
+        if menuFindWeapon == "y":
+            self.equipWeapon(weapon)
+        elif menuFindWeapon == "n":
+            self.inventory.addItems(weapon)
+        else:
+            print("ERROR: Invalid input. Please try again.")
         
     def equipWeapon(self, weapon):
         self.weapon = weapon
@@ -76,16 +86,15 @@ class Player():
         self.location.getSquareInfo()
 
     def interact(self):
-        object = self.location.getSquareChest()
+        object = self.location.getSquareObject()
 
-        if isinstance(object, game_objects.chests.Chest):
+        if isinstance(object, chest.Chest):
             object.open(self)
-        elif isinstance(object, game_objects.weapons.Weapon):
+        elif isinstance(object, objects.Weapon):
+            self.findWeapon(object)
+        elif isinstance(object, objects.KeyItem):
             pass
-        elif isinstance(object, game_objects.objects.Object):
-            pass
-
-        
+   
     def getPlayer(self):
         return self
 

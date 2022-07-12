@@ -1,27 +1,38 @@
-import os
-from game_objects.objects import MiscItem
-import player, game_methods
-import player_classes.testerClass
-import levels.levelOne, rooms.levelOneRooms, rooms.testerRoom
-import game_objects.weapons as weapons, game_objects.food as food, game_objects.key_items as key_items, game_objects.misc_items as misc_items, game_objects.chests as chests
-import enemies.enemyWolf, enemies.enemyOgre
-import inventory
 
+import player_classes.testerClass, enemies.levelOneEnemies, game_methods
+import rooms.testRooms
+import game_objects.weapons as weapons, game_objects.food as food, game_objects.key_items as key_items, game_objects.misc_items as misc_items
+import chests.testChests
+
+#initialize player
 player1 = player_classes.testerClass.Tester("Blake")
 
+#initialize testing room
+testRoomA = rooms.testRooms.TestRoomA()
+player1.location = testRoomA
 
-chest1 = chests.CaptainChest()
+#initialize enemies
+wolf1 = enemies.levelOneEnemies.Wolf()
 
-player1.inventory.addItems(weapons.Dagger(), weapons.Greatsword(), food.Cake(), key_items.GlowingAmber(), misc_items.ChildsToy(), misc_items.RuinedArtwork(), misc_items.Torch(), weapons.Mace(), food.CheeseWedge())
+#initialize objects
+sword1 = weapons.Sword()
+sword2 = weapons.Sword()
+mace1 = weapons.Mace()
+cake1 = food.Cake()
+glowingAmber1 = key_items.GlowingAmber()
+childToy1 = misc_items.ChildsToy()
 
-print(chest1.inventory)
-player1.takeItems(chest1, weapons.Dagger())
+#initilize chests
+chest2 = chests.testChests.TestChestA()
 
-# inventory1.addItems(weapons.Dagger())
-# inventory1.addItems(food.Cake())
-# inventory1.addItems(key_items.GlowingAmber())
+# player1.setLocation(4,2)
+# player1.interact()
+chest2.open(player1)
+chest2.viewInventory()
 
-# print(inventory1.foodsList)
+
+
+
 
 
 

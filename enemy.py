@@ -1,8 +1,8 @@
 import game_objects.weapons as weapons
 
 class Enemy():
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = None
         self.hp = None
         self.attackPower = None
         self.speed = None
@@ -15,13 +15,13 @@ class Enemy():
             player.hp = 0
         print(f"{self.name} attacks {player.name} and does {self.attackPower} damage! You have {player.hp} health remaining.")
         if player.hp <= 0:
-            print("\n------------------------------------------------------------------")
-            print("                    You have been slain!")
-            print("------------------------------------------------------------------")
+            print("------------------------------------------------------------------------------------------")
+            print("{:^90}".format("You have been slain!"))
+            print("------------------------------------------------------------------------------------------")
 
-            print("\n------------------------------------------------------------------\n------------------------------------------------------------------")
-            print("                         GAME OVER!                                   ")
-            print("------------------------------------------------------------------\n------------------------------------------------------------------")
+            print("------------------------------------------------------------------------------------------")
+            print("{:^90}".format("GAME OVER!"))
+            print("------------------------------------------------------------------------------------------")
 
     def drop(self, player, introString):
         menu = input(f"\n{introString}\nWould you like to add the {self.item.name} to your inventory? (y/n)\n").lower()

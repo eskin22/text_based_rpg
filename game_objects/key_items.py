@@ -6,4 +6,5 @@ class GlowingAmber(objects.KeyItem):
         self.name = "Glowing Amber"
         self.value = 100
         self.desc = "A mysterious glowing nugget of amber that seems to have magical properties"
+        self.createObjectID()
         

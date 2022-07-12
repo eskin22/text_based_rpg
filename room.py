@@ -34,8 +34,8 @@ class Room(list):
     def getSquareInfo(self):
         print(self[self.row][self.square].info)
 
-    def getSquareChest(self):
-        return self[self.row][self.square].chest
+    def getSquareObject(self):
+        return self[self.row][self.square].object
 
     def moveForward(self):
         if (self.square + 1) <= 4:

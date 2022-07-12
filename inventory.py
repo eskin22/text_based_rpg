@@ -1,5 +1,6 @@
 
 import game_objects.objects as objects, game_objects.weapons as weapons, game_objects.key_items as key_items, game_objects.food as food
+
 class Inventory(list):
     def __init__(self):
         super().__init__()
@@ -11,7 +12,7 @@ class Inventory(list):
         self.keyItemsList = []
         self.miscItemsList = []
 
-        self.extend([self.weaponsList, self.foodList, self.keyItemsList])
+        self.extend([self.weaponsList, self.foodList, self.keyItemsList, self.miscItemsList])
 
     def addItems(self, *args):
         for item in [*args]:
@@ -23,7 +24,7 @@ class Inventory(list):
                 self.foodList.append(item)
             elif isinstance(item, objects.MiscItem):
                 self.miscItemsList.append(item)
-
+ 
     def removeItems(self, *args):
         for item in [*args]:
             if isinstance(item, objects.Weapon):

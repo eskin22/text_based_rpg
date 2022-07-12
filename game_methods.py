@@ -28,13 +28,18 @@ def classSelection(playerName):
 def classInfo(player):
     running = True
     while running == True:
-        print("------------------------------------------------------------------")
-        print("                            INFO                                   ")
-        print("------------------------------------------------------------------")
-        print(f"Class: {player.className} \nHP: {player.hp} \nMagic Affinity: {player.magicAffinity} \nStrength: {player.strength} \nCoin: {player.coin.value}")
-        print("------------------------------------------------------------------")
-        print("                            BACK ($back)                                   ")
-        print("------------------------------------------------------------------")  
+        print("\n--------------------------------------------------")
+        print("{:^50}".format("INFO"))
+        print("--------------------------------------------------")
+        print("{:<40}".format("     - Class: " + player.className))
+        print("{:<40}".format("     - HP: " + str(player.hp)))
+        print("{:<40}".format("     - Magic Affinity: " + str(player.magicAffinity)))
+        print("{:<40}".format("     - Strength: " + str(player.strength)))
+        print("{:<40}".format("     - Coins: " + str(player.getBankValue())))
+        
+        print("--------------------------------------------------")
+        print("{:^55}".format("BACK ($back) "))
+        print("--------------------------------------------------")
 
         menu = input()
         if menu.lower() == "$back":
@@ -72,9 +77,9 @@ def battle(player, enemy):
     
     
 def encounter(player, enemy):
-    print("------------------------------------------------------------------")
-    print(f"                            {enemy.name.upper()}            HP: {enemy.hp}       DMG: {enemy.attackPower}                          ")
-    print("------------------------------------------------------------------")
+    print("------------------------------------------------------------------------------------------")
+    print("{:>8}{:^68}{:>5}".format("ENEMY: " + enemy.name.upper(), "HP: " + str(enemy.hp), "DAMAGE: " + str(enemy.attackPower)))
+    print("------------------------------------------------------------------------------------------")
 
     menuAttack = input(f"\nWhat would you like to do? ($attack/$flee) \n").lower()
     if menuAttack == "$attack":
@@ -86,5 +91,5 @@ def encounter(player, enemy):
         elif (randNum > 7):
             print(f"\nYou try to escape, but the {enemy.name} has cornered you! \n")
             battle(player, enemy)
-    # else:
-    #     print("\nError: Invalid input. Please try again. \n")
+    else:
+        print("\nError: Invalid input. Please try again. \n")

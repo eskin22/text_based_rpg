@@ -1,10 +1,12 @@
-import game_objects.chests, game_objects.objects, game_objects.key_items, game_objects.weapons, random
+import game_objects.objects, game_objects.key_items, game_objects.weapons, random
+import chests.testChests, chests.levelOneChests
 
 class Square():
     def __init__(self, id=None):
         self.name = None
         self.id = id
         self.info = "Nothing to see here. "
+        self.object = None
 
 class StartingSquare(Square):
     def __init__(self, id=None):
@@ -36,16 +38,20 @@ class ChestSquare(Square):
     def __init__(self, id=None):
         super().__init__(id)
         self.name = "Chest Square"
-        self.chest = None
         self.info = "There is a chest here! "
+
+class SwordSquare(ItemSquare):
+    def __init__(self, id=None):
+        super().__init__(id)
+        self.object = game_objects.weapons.Sword()
 
 class TestChestSquare(ChestSquare):
     def __init__(self, id=None):
         super().__init__(id)
-        self.chest = game_objects.chests.TestChest()
+        self.object = chests.testChests.TestChestA()
 
 class CaptainChestSquare(ChestSquare):
     def __init__(self, id=None):
         super().__init__(id)
-        self.chest = game_objects.chests.CaptainChest()
+        self.object = chests.levelOneChests.CaptainChest()
 
