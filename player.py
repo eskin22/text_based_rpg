@@ -53,7 +53,7 @@ class Player():
             print(f"{item.name} added to inventory.")
 
     def findWeapon(self, weapon):
-        menuFindWeapon = input(f"You found a {weapon.name}! Would you like to equip it now? (y/n)").lower()
+        menuFindWeapon = input(f"You found a {weapon.name}! Would you like to equip it now? (y/n)\n").lower()
         
         if menuFindWeapon == "y":
             self.equipWeapon(weapon)
@@ -64,7 +64,7 @@ class Player():
             print("ERROR: Invalid input. Please try again.")
 
     def findChest(self, chest):
-        menuFindChest = input(f"You found a chest! Would you like to open it? (y/n)").lower()
+        menuFindChest = input(f"You found a chest! Would you like to open it? (y/n)\n").lower()
         
         if menuFindChest == "y":
             chest.open(self)
@@ -74,7 +74,7 @@ class Player():
             print("ERROR: Invalid input. Please try again.")
 
     def findObject(self, object):
-        menuFindObject = input(f"You found a {object.name}! Would you like to add it to your inventory? (y/n)").lower()
+        menuFindObject = input(f"You found a {object.name}! Would you like to add it to your inventory? (y/n)\n").lower()
         
         if menuFindObject == "y":
             self.addItems(object)
@@ -82,8 +82,6 @@ class Player():
             print(f"You chose not to pick up the {object.name}.")
         else:
             print("ERROR: Invalid input. Please try again.")
-    
-
         
     def equipWeapon(self, weapon):
         self.weapon = weapon
@@ -123,9 +121,8 @@ class Player():
             self.findWeapon(object)
         elif isinstance(object, objects.KeyItem):
             self.findObject(object)
-   
-    def getPlayer(self):
-        return self
+        elif isinstance(object, objects.MiscItem):
+            self.findObject(object)
 
 
         

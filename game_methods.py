@@ -93,3 +93,31 @@ def encounter(player, enemy):
             battle(player, enemy)
     else:
         print("\nError: Invalid input. Please try again. \n")
+
+def explore(player):
+    menuExplore = input("\nWhat direction would you like to go? TIP: Use command $go preceding direction to choose direction. ")
+    
+    if menuExplore.startswith("$go"):
+        selection = menuExplore[3:]
+        if selection.startswith(" f"):
+            player.moveForward()
+        elif selection.startswith(" b"):
+            player.moveBackward()
+        elif selection.startswith(" r"):
+            player.moveDown()
+        elif selection.startswith(" l"):
+            player.moveUp()
+        else:
+            print("ERROR: Invalid input. Please try again. ")
+    
+    else:
+        print("ERROR: Invalid input. Please try again. ")
+
+def navigate(player):
+    running = True
+
+    while running == True:
+        menuNavigate = input("What would you like to do? TIP: use command $help for a list of action commands \n")
+        
+
+
