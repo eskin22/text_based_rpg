@@ -1,5 +1,5 @@
 
-import player_classes.testerClass, enemies.levelOneEnemies, game_methods
+import player_classes.testerClass, enemies.levelOneEnemies
 import rooms.testRooms
 import game_objects.objects as objects, game_objects.weapons as weapons, game_objects.food as food, game_objects.key_items as key_items, game_objects.misc_items as misc_items
 import chests.testChests
@@ -26,7 +26,7 @@ childToy1 = misc_items.ChildsToy()
 chest2 = chests.testChests.TestChestA()
 player1.setLocation(0,2)
 player1.showLocation()
-game_methods.explore(player1)
+player1.explore()
 player1.showLocation()
 
 

@@ -1,5 +1,6 @@
 import game_objects.objects, game_objects.key_items, game_objects.weapons, random
 import chests.testChests, chests.levelOneChests
+import enemies.levelOneEnemies
 
 class Square():
     def __init__(self, id=None):
@@ -44,6 +45,11 @@ class SwordSquare(ItemSquare):
     def __init__(self, id=None):
         super().__init__(id)
         self.object = game_objects.weapons.Sword()
+
+class TestEnemySquare(EnemySquare):
+    def __init__(self, id=None):
+        super().__init__(id)
+        self.object = enemies.levelOneEnemies.Wolf()
 
 class TestChestSquare(ChestSquare):
     def __init__(self, id=None):

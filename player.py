@@ -1,6 +1,6 @@
 
 
-import enemy, game_methods, game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
+import random, sys, enemy, game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
 
 class Player():
     def __init__(self, name):
@@ -17,15 +17,7 @@ class Player():
 
         print(f"\nYou selected the {self.className} class!")
 
-    def attack(self, enemy):
-        enemy.hp -= self.attackPower
-        if enemy.hp <= 0:
-            enemy.hp = 0
-        print(f"{self.name} attacks {enemy.name} and does {self.attackPower} damage! {enemy.name} has {enemy.hp} HP remaining.")
-        if enemy.hp <= 0:
-            print("\n------------------------------------------------------------------------------------------")
-            print("{:^90}".format("The " + enemy.name + " has been slain!"))
-            print("------------------------------------------------------------------------------------------")
+    #methods for player bank
 
     def addCoins(self, coins):
         self.bank.addCoins(coins)
@@ -38,9 +30,16 @@ class Player():
 
     def displayBankValue(self):
         self.bank.showValue()
+    
+    #methods for player inventory
 
     def displayInventory(self):
         self.inventory.viewInventory()
+    
+    def addItems(self, *args):
+        for item in [*args]:
+            self.inventory.addItems(item)
+            print(f"{item.name} added to inventory.")
 
     def takeItems(self, inv, *args):
         for item in [*args]:
@@ -48,10 +47,10 @@ class Player():
             inv.removeItems(item)
             print(f"\n{item.name} added to inventory. ")
 
-    def addItems(self, *args):
-        for item in [*args]:
-            self.inventory.addItems(item)
-            print(f"{item.name} added to inventory.")
+    def equipWeapon(self, weapon):
+        self.weapon = weapon
+        self.attackPower = ((1+(self.strength/100))*weapon.damage)
+        print(f"\n{weapon.name} equipped successfully. ")
 
     def findWeapon(self, weapon):
         menuFindWeapon = input(f"You found a {weapon.name}! Would you like to equip it now? (y/n)\n").lower()
@@ -83,11 +82,8 @@ class Player():
             print(f"You chose not to pick up the {object.name}.")
         else:
             print("ERROR: Invalid input. Please try again.")
-        
-    def equipWeapon(self, weapon):
-        self.weapon = weapon
-        self.attackPower = ((1+(self.strength/100))*weapon.damage)
-        print(f"\n{weapon.name} equipped successfully. ")
+
+    #methods for player navigation
 
     def moveUp(self):
         self.location.moveUp()
@@ -119,16 +115,101 @@ class Player():
         if isinstance(object, chest.Chest):
             self.findChest(object)
         elif isinstance(object, enemy.Enemy):
-            game_methods.encounter(self, object)
+            self.encounter(object)
         elif isinstance(object, objects.Weapon):
             self.findWeapon(object)
         elif isinstance(object, objects.KeyItem):
             self.findObject(object)
         elif isinstance(object, objects.MiscItem):
             self.findObject(object)
+        else:
+            print("ERROR: An error has occurred. ")
 
+    def explore(self):
+        running = True
 
+        while running == True:
+            menuExplore = input("\nWhat would you like to do? TIP: use the $help command to get a list of action commands ")
         
+            if menuExplore.startswith("$go"):
+                selection = menuExplore[3:]
+                if selection.startswith(" f"):
+                    self.moveForward()
+                elif selection.startswith(" b"):
+                    self.moveBackward()
+                elif selection.startswith(" r"):
+                    self.moveDown()
+                elif selection.startswith(" l"):
+                    self.moveUp()
+                else:
+                    print("ERROR: Invalid input. Please try again. ")
+
+            elif menuExplore.startswith("$ins"):
+                self.inspect()
+
+            elif menuExplore.startswith("$int"):
+                self.interact()
+            
+            else:
+                print("ERROR: Invalid input. Please try again. ")
+
+    #methods for player combat
+
+    def attack(self, enemy):
+        enemy.hp -= self.attackPower
+        if enemy.hp <= 0:
+            enemy.hp = 0
+        print(f"{self.name} attacks {enemy.name} and does {self.attackPower} damage! {enemy.name} has {enemy.hp} HP remaining.")
+        if enemy.hp <= 0:
+            print("\n------------------------------------------------------------------------------------------")
+            print("{:^90}".format("The " + enemy.name + " has been slain!"))
+            print("------------------------------------------------------------------------------------------")
+
+    def battle(self, enemy):
+        print()
+        while ((self.hp > 0) and (enemy.hp > 0)):
+            if self.speed == enemy.speed:
+                if (random.randint(0,9)<=5):
+                    self.attack(enemy)
+                    if enemy.hp > 0:
+                        enemy.attack(self)
+                else:
+                    enemy.attack(self)
+                    if self.hp > 0:
+                        self.attack(enemy)
+            elif self.speed > enemy.speed:
+                self.attack(enemy)
+                if enemy.hp > 0:
+                    enemy.attack(self)
+            else:
+                enemy.attack(self)
+                if self.hp > 0:
+                    self.attack(enemy)
+                
+            if enemy.hp <= 0:
+                enemy.isDead = True
+                break
+            
+            if self.hp <= 0:
+                sys.exit()
+    
+    def encounter(self, enemy):
+        print("------------------------------------------------------------------------------------------")
+        print("{:>8}{:^68}{:>5}".format("ENEMY: " + enemy.name.upper(), "HP: " + str(enemy.hp), "DAMAGE: " + str(enemy.attackPower)))
+        print("------------------------------------------------------------------------------------------")
+
+        menuAttack = input(f"\nWhat would you like to do? ($attack/$flee) \n").lower()
+        if menuAttack == "$attack":
+            self.battle(enemy)
+        elif menuAttack == "$flee":
+            randNum = random.randint(0,9)
+            if (randNum <= 7):
+                print("\nYou escaped safely. \n")
+            elif (randNum > 7):
+                print(f"\nYou try to escape, but the {enemy.name} has cornered you! \n")
+                self.battle(enemy)
+        else:
+            print("\nError: Invalid input. Please try again. \n")
         
 
 
