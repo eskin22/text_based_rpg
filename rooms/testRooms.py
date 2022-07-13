@@ -7,6 +7,6 @@ class TestRoomA(room.Room):
         self.extend([[squares.Square(20), squares.Square(21), squares.Square(22), squares.Square(23), squares.Square(24)]])
         self.extend([[squares.StartingSquare(30), squares.Square(31), squares.Square(32), squares.Square(33), squares.TestChestSquare(34)]])
         self.extend([[squares.Square(40), squares.CoinSquare(41), squares.Square(42), squares.Square(43), squares.Square(44)]])
-        self.extend([[squares.Square(50), squares.Square(51), squares.SwordSquare(52), squares.Square(53), squares.Square(54)]])
+        self.extend([[squares.Square(50), squares.Square(51), squares.SwordSquare(52), squares.Square(53), squares.TestItemSquare(54)]])
 
         self.row, self.square = 2, 0

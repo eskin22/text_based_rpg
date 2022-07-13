@@ -50,6 +50,11 @@ class TestChestSquare(ChestSquare):
         super().__init__(id)
         self.object = chests.testChests.TestChestA()
 
+class TestItemSquare(ItemSquare):
+    def __init__(self, id=None):
+        super().__init__(id)
+        self.object = game_objects.key_items.GlowingAmber()
+
 class CaptainChestSquare(ChestSquare):
     def __init__(self, id=None):
         super().__init__(id)

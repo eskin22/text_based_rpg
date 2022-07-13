@@ -25,7 +25,7 @@ childToy1 = misc_items.ChildsToy()
 #initilize chests
 chest2 = chests.testChests.TestChestA()
 
-player1.setLocation(2,4)
+player1.setLocation(4,4)
 player1.interact()
 
 chest2.viewInventory()
