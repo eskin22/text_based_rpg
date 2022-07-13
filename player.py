@@ -1,5 +1,6 @@
 
-import game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
+
+import enemy, game_methods, game_objects.bank as bank, game_objects.objects as objects, game_objects.weapons as weapons, chest, inventory, room
 
 class Player():
     def __init__(self, name):
@@ -117,6 +118,8 @@ class Player():
 
         if isinstance(object, chest.Chest):
             self.findChest(object)
+        elif isinstance(object, enemy.Enemy):
+            game_methods.encounter(self, object)
         elif isinstance(object, objects.Weapon):
             self.findWeapon(object)
         elif isinstance(object, objects.KeyItem):

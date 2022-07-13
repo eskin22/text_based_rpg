@@ -1,4 +1,4 @@
-import player, random, sys
+import random, sys
 import player_classes.warriorClass, player_classes.merchantClass, player_classes.mageClass, player_classes.testerClass
 
 def classSelection(playerName):
@@ -95,29 +95,32 @@ def encounter(player, enemy):
         print("\nError: Invalid input. Please try again. \n")
 
 def explore(player):
-    menuExplore = input("\nWhat direction would you like to go? TIP: Use command $go preceding direction to choose direction. ")
-    
-    if menuExplore.startswith("$go"):
-        selection = menuExplore[3:]
-        if selection.startswith(" f"):
-            player.moveForward()
-        elif selection.startswith(" b"):
-            player.moveBackward()
-        elif selection.startswith(" r"):
-            player.moveDown()
-        elif selection.startswith(" l"):
-            player.moveUp()
-        else:
-            print("ERROR: Invalid input. Please try again. ")
-    
-    else:
-        print("ERROR: Invalid input. Please try again. ")
-
-def navigate(player):
     running = True
 
     while running == True:
-        menuNavigate = input("What would you like to do? TIP: use command $help for a list of action commands \n")
+        menuExplore = input("\nWhat would you like to do? TIP: use the $help command to get a list of action commands ")
         
+        if menuExplore.startswith("$go"):
+            selection = menuExplore[3:]
+            if selection.startswith(" f"):
+                player.moveForward()
+            elif selection.startswith(" b"):
+                player.moveBackward()
+            elif selection.startswith(" r"):
+                player.moveDown()
+            elif selection.startswith(" l"):
+                player.moveUp()
+            else:
+                print("ERROR: Invalid input. Please try again. ")
+
+        elif menuExplore.startswith("$ins"):
+            player.inspect()
+
+        elif menuExplore.startswith("$int"):
+            player.interact()
+        
+        else:
+            print("ERROR: Invalid input. Please try again. ")
+
 
 

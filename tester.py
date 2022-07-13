@@ -24,9 +24,9 @@ childToy1 = misc_items.ChildsToy()
 
 #initilize chests
 chest2 = chests.testChests.TestChestA()
-
+player1.setLocation(0,2)
 player1.showLocation()
-game_methods.navigate(player1)
+game_methods.explore(player1)
 player1.showLocation()
 
 
