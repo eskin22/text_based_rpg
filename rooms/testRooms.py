@@ -9,4 +9,4 @@ class TestRoomA(room.Room):
         self.extend([[squares.Square(40), squares.CoinSquare(41), squares.Square(42), squares.Square(43), squares.Square(44)]])
         self.extend([[squares.Square(50), squares.Square(51), squares.SwordSquare(52), squares.Square(53), squares.TestItemSquare(54)]])
 
-        self.row, self.square = 2, 0
+        self.row, self.square = 1, 2

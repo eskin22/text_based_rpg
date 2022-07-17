@@ -16,6 +16,62 @@ class Player():
         self.location = None
 
         print(f"\nYou selected the {self.className} class!")
+    
+    #method for displaying game menu
+    def displayMenu(self):
+        running = True
+        while running == True:
+            print("------------------------------------------------------------------------------------------")
+            print("{:^80}".format("MENU"))
+            print("------------------------------------------------------------------------------------------")
+            print("{:^80}".format("CHARACTER ($char)"))
+            print("{:^80}".format("INVENTORY ($inv)"))
+            print("\n{:^80}".format("QUIT ($quit)"))
+            print("------------------------------------------------------------------------------------------")
+            print("{:^83}".format("BACK ($back) "))
+            print("------------------------------------------------------------------------------------------")
+
+            menuSelection = input().lower()
+            if menuSelection.startswith("$char"):
+                self.displayCharacter()
+            elif menuSelection.startswith("$inv"):
+                self.displayInventory()
+            elif menuSelection.startswith("$quit"):
+                sys.exit()
+            elif menuSelection.startswith("$back"):
+                break
+            else:
+                print("ERROR: Invalid input. Please try again.")
+
+    def displayCharacter(self):
+        running = True
+        while running == True:
+            print("------------------------------------------------------------------------------------------")
+            print("{:^80}".format("CHARACTER"))
+            print("------------------------------------------------------------------------------------------")
+            print("{:^80}".format(f"Name: {self.name}\n"))
+            print("{:^80}".format(f"Class: {self.className}"))
+            print("{:^80}".format(f"HP: {self.hp}"))
+            print("{:^80}".format(f"Magic Affinity: {self.magicAffinity}"))
+            print("{:^80}".format(f"Strength: {self.strength}"))
+            print("{:^80}".format(f"Speed: {self.speed}"))
+
+            try:
+                print("{:^80}".format(f"Weapon: {self.weapon.name}"))
+            except:
+                print("{:^80}".format(f"Weapon: None"))
+
+            print("{:^80}".format(f"Attack Power: {self.attackPower}\n"))
+            print("{:^80}".format(f"Coins: {self.bank.value}"))
+            print("------------------------------------------------------------------------------------------")
+            print("{:^83}".format("BACK ($back) "))
+            print("------------------------------------------------------------------------------------------")
+
+            menuCharacter = input()
+            if menuCharacter.startswith("$back"):
+                break
+            else:
+                print("ERROR: Inavlid input. Please try again.")
 
     #methods for player bank
 
@@ -87,15 +143,47 @@ class Player():
 
     def moveUp(self):
         self.location.moveUp()
+        print("You continue on left one space.")
+
+        object = self.location.getSquareObject()
+        if isinstance(object, enemy.Enemy):
+            if object.isDead:
+                self.encounter(object)
+            else:
+                print(f"You step over the corpse of the {object.name}...")
 
     def moveDown(self):
         self.location.moveDown()
+        print("You continue on right one space.")
+
+        object = self.location.getSquareObject()
+        if isinstance(object, enemy.Enemy):
+            if object.isDead:
+                self.encounter(object)
+            else:
+                print(f"You step over the corpse of the {object.name}...")
 
     def moveForward(self):
         self.location.moveForward()
+        print("You continue on forward one space.")
+
+        object = self.location.getSquareObject()
+        if isinstance(object, enemy.Enemy):
+            if object.isDead:
+                self.encounter(object)
+            else:
+                print(f"You step over the corpse of the {object.name}...")
 
     def moveBackward(self):
         self.location.moveBackward()
+        print("You continue on backward one space.")
+
+        object = self.location.getSquareObject()
+        if isinstance(object, enemy.Enemy):
+            if object.isDead:
+                self.encounter(object)
+            else:
+                print(f"You step over the corpse of the {object.name}...")
 
     def getLocation(self):
         self.location.getLocation()
@@ -108,6 +196,16 @@ class Player():
 
     def inspect(self):
         self.location.getSquareInfo()
+
+    def displayHelpMenu(self):
+        print("\n--------------------------------------------------")
+        print("{:<40}".format("HELP"))
+        print("{:<40}".format("     - MENU ($menu))"))
+        print("{:<40}".format("     - MOVE ($go [direction])"))
+        print("{:<40}".format("     - INSPECT ($ins)"))
+        print("{:<40}".format("     - INTERACT ($ins)"))
+        print("{:<40}".format("     - INVENTORY ($inv"))
+        print("--------------------------------------------------")
 
     def interact(self):
         object = self.location.getSquareObject()
@@ -143,12 +241,18 @@ class Player():
                     self.moveUp()
                 else:
                     print("ERROR: Invalid input. Please try again. ")
+            
+            elif menuExplore.startswith("$menu"):
+                self.displayMenu()
 
             elif menuExplore.startswith("$ins"):
                 self.inspect()
 
             elif menuExplore.startswith("$int"):
                 self.interact()
+
+            elif menuExplore.startswith("$help"):
+                self.displayHelpMenu()
             
             else:
                 print("ERROR: Invalid input. Please try again. ")
@@ -194,6 +298,8 @@ class Player():
                 sys.exit()
     
     def encounter(self, enemy):
+        print("------------------------------------------------------------------------------------------")
+        print("{:^80}".format("An enemy " + enemy.name + " has attacked!"))
         print("------------------------------------------------------------------------------------------")
         print("{:>8}{:^68}{:>5}".format("ENEMY: " + enemy.name.upper(), "HP: " + str(enemy.hp), "DAMAGE: " + str(enemy.attackPower)))
         print("------------------------------------------------------------------------------------------")

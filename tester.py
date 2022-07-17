@@ -26,12 +26,11 @@ childToy1 = misc_items.ChildsToy()
 chest2 = chests.testChests.TestChestA()
 # player1.setLocation(0,2)
 # player1.showLocation()
-# player1.explore()
 # player1.showLocation()
 
-player1.inventory.viewInventory()
+# player1.explore()
 
-
+print(wolf1.isDead)
 
 
 

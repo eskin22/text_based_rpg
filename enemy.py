@@ -16,11 +16,11 @@ class Enemy():
         print(f"{self.name} attacks {player.name} and does {self.attackPower} damage! You have {player.hp} health remaining.")
         if player.hp <= 0:
             print("------------------------------------------------------------------------------------------")
-            print("{:^90}".format("You have been slain!"))
+            print("{:^80}".format("You have been slain!"))
             print("------------------------------------------------------------------------------------------")
 
             print("------------------------------------------------------------------------------------------")
-            print("{:^90}".format("GAME OVER!"))
+            print("{:^80}".format("GAME OVER!"))
             print("------------------------------------------------------------------------------------------")
 
     def drop(self, player, introString):
