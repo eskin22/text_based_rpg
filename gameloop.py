@@ -1,4 +1,4 @@
-import player, enemy, game_methods, levels
+import player, enemy, game_methods, levels.levelOne
 
 def main():
     running = True
@@ -19,7 +19,7 @@ def main():
 
         menu = input(f"\n{playerName}, you're about to embark on an adventure. Are you ready to begin? (y/n) \n")
         if menu.lower() == "y":
-            levels.levelOne(player1)
+            levels.levelOne.play(player1)
         else: 
             print("Not going!")
             break
